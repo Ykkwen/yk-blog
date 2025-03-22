@@ -1,10 +1,11 @@
-import Link from 'next/link';
-import { format } from 'date-fns';
-import { getAllPosts, type PostMetadata } from '@/lib/mdx';
-import { FiCalendar, FiArrowRight } from 'react-icons/fi';
+import Link from "next/link";
+import { format } from "date-fns";
+import { getAllPosts, type PostMetadata } from "@/lib/mdx";
+import { FiCalendar, FiArrowRight } from "react-icons/fi";
 
-export default function Home() {
-  const posts: PostMetadata[] = getAllPosts();
+export default async function Home() {
+  const posts: PostMetadata[] = await getAllPosts();
+  console.log("xxxxxx=====>", posts);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16 md:py-20">
@@ -24,7 +25,10 @@ export default function Home() {
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             {posts.map((post) => (
-              <article key={post.id} className="flex flex-col card-hover bg-card rounded-lg overflow-hidden shadow-sm border border-border">
+              <article
+                key={post.id}
+                className="flex flex-col card-hover bg-card rounded-lg overflow-hidden shadow-sm border border-border"
+              >
                 <Link href={`/posts/${post.id}`} className="group">
                   <div className="overflow-hidden">
                     <div className="h-48 bg-muted flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
@@ -38,7 +42,7 @@ export default function Home() {
                     <div className="flex items-center text-sm text-muted-foreground mb-3">
                       <FiCalendar className="mr-1" />
                       <time>
-                        {format(new Date(post.date), 'yyyy年MM月dd日')}
+                        {format(new Date(post.date), "yyyy年MM月dd日")}
                       </time>
                     </div>
                     <p className="text-muted-foreground mb-4 line-clamp-2">
