@@ -1,12 +1,9 @@
 import { format } from "date-fns";
-import { getPostData, getPostIds, type PostData, type PostParams } from "@/lib/mdx";
+import { getPostData, type PostData } from "@/lib/mdx";
 import Link from "next/link";
 import { FiArrowLeft, FiCalendar, FiTag } from "react-icons/fi";
 import { Metadata } from "next";
 
-export function generateStaticParams(): PostParams[] {
-  return getPostIds();
-}
 
 type PostPageParams = {
   params: {
